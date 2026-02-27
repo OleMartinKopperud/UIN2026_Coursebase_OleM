@@ -1,8 +1,9 @@
-import { Link, Outlet, UNSAFE_decodeViaTurboStream } from 'react-router-dom'
+import { Link, Outlet, UNSAFE_decodeViaTurboStream, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 export default function CategoryLayout(){
-    
+
+    const {slug} = useParams()
     const [apiData, setApiData] = useState([])
     const [apiEndpoint, setApiEndpoint] = useState()
 
@@ -40,7 +41,7 @@ export default function CategoryLayout(){
           
           Det bestemmes av routene definert i App.jsx
         */}
-        <Outlet context={{apiEndpoint, defaultApiUrl}} />
+        <Outlet context={{apiEndpoint, defaultApiUrl, setApiEndpoint}} />
     </>
     )
 }
