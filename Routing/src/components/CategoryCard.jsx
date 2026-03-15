@@ -11,16 +11,15 @@ export default function CategoryCard({name, url}){
         const response = await fetch(url)
         const data = await response.json()
         setApiData(data)
-
     }
 
-    console.log("kommer fra CategoryCard", slug)
-
+    console.log("Kommer fra CategoryCard",slug)
 
     useEffect(()=>{
         getData()
     },[])
-    return(
+
+    return (
         <article>
             <h3>{name}</h3>
             <p>{apiData?.id}</p>
@@ -29,7 +28,7 @@ export default function CategoryCard({name, url}){
             <ul>
                 {apiData?.stats?.map((item) => <li key={apiData?.name + item?.stat?.name}>{item?.stat?.name}: {item?.base_stat}</li>)}
             </ul>
-            <Link to={apiData?.name} onClick={()=>setApiEndpoint(url)}>  Les mer om {apiData?.name}</Link>
+            <Link to={apiData?.name} onClick={()=>setApiEndpoint(url)}>Les mer om {apiData?.name}</Link>
         </article>
     )
 }

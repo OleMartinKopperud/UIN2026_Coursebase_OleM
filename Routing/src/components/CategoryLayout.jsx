@@ -1,8 +1,11 @@
-import { Link, Outlet, UNSAFE_decodeViaTurboStream, useParams } from 'react-router-dom'
+// Importerer Link og Outlet fra react-router-dom
+// Link brukes til navigasjon uten at siden lastes på nytt
+// Outlet brukes til å vise nested routes (child routes)
+import { Link, Outlet, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 export default function CategoryLayout(){
-
+    
     const {slug} = useParams()
     const [apiData, setApiData] = useState([])
     const [apiEndpoint, setApiEndpoint] = useState()
@@ -13,7 +16,7 @@ export default function CategoryLayout(){
         const response = await fetch(defaultApiUrl)
         const data = await response.json()
         const {type, pokemon, item} = data
-
+        
         setApiData({type, pokemon, item})
         
     }
@@ -23,7 +26,7 @@ export default function CategoryLayout(){
 
     useEffect(()=>{
         getData()
-    },[])
+    },[slug])
     return (
      <>
         {/* Navigasjonsmeny for kategoriene */}
